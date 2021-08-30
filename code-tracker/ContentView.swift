@@ -7,10 +7,18 @@
 
 import SwiftUI
 
+let screenWidth = UIScreen.main.bounds.width
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            ZStack {
+                
+                Color.black
+                    .ignoresSafeArea()
+                OpeningScreen()
+            }
+        }
     }
 }
 
