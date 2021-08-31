@@ -49,7 +49,7 @@ struct OpeningScreen: View {
                 .frame(width: screenWidth - 25, height: 41)
                 .background(greenColor)
                 .cornerRadius(20.0)
-            }
+            }.navigationBarBackButtonHidden(true)
             
             
             Spacer()

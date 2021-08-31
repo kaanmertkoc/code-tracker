@@ -18,7 +18,7 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 OpeningScreen()
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

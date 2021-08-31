@@ -12,7 +12,8 @@ import Firebase
 struct SignUp: View {
     
     var provider = OAuthProvider(providerID: "github.com")
-     
+    @State var isActive = false
+    
     var body: some View {
         ZStack {
             Color.black
@@ -27,7 +28,11 @@ struct SignUp: View {
                     .foregroundColor(Color.white)
                     .font(.system(size: 30, weight: .medium))
                     .padding(.init(top: 50, leading: 0, bottom: 0, trailing: 0))
-                
+                NavigationLink(
+                    destination: HomePage(),
+                    isActive: $isActive) {}
+                    .navigationBarBackButtonHidden(true)
+                   
                 Button {
                     
                     provider.scopes = ["user:email"]
@@ -38,12 +43,20 @@ struct SignUp: View {
                         if credential != nil {
                             Auth.auth().signIn(with: credential!) { authResult, error in
                                 if error != nil {
-                                    // Handle error.
+                                    print(error!)
+                                    return
                                 }
-                                // User is signed in.
-                                // IdP data available in authResult.additionalUserInfo.profile.
+                                guard let oauthCredential = authResult!.credential as? OAuthCredential else { return }
                                 
-                                guard (authResult?.credential as? OAuthCredential) != nil else { return }
+                                if oauthCredential.accessToken != nil {
+                                    UserDefaults.standard.setValue(oauthCredential.accessToken!, forKey: "access_token")
+                                    isActive.toggle()
+                                }
+                                else {
+                                    print("error getting token")
+                                }
+                                
+      
                             }
                         }
                     }
