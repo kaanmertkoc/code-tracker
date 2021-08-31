@@ -19,6 +19,8 @@ struct ContentView: View {
                 OpeningScreen()
             }
         }.navigationBarBackButtonHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
+
     }
 }
 

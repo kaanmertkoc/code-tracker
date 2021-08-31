@@ -11,13 +11,15 @@ import Firebase
 @main
 struct code_trackerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    let network = Network()
     
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(network)
+
         }
+
     }
 }
 

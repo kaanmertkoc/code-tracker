@@ -10,6 +10,10 @@
 		001509F5EB4772270A89AE77 /* Pods_code_tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC26ADDF4D54CF8C328EAC6 /* Pods_code_tracker.framework */; };
 		6DEC6E3086EE0D986CA16B03 /* Pods_code_tracker_code_trackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC5E371EE42EC69BE7E7CFF /* Pods_code_tracker_code_trackerUITests.framework */; };
 		90D6BD8D735F7CBD73F41390 /* Pods_code_trackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE6571CA7311982244FB5FC3 /* Pods_code_trackerTests.framework */; };
+		B02986CF26DEB13400681924 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02986CE26DEB13400681924 /* Repo.swift */; };
+		B02986D126DEBACC00681924 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02986D026DEBACC00681924 /* Network.swift */; };
+		B02986D326DEC85200681924 /* HideNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02986D226DEC85200681924 /* HideNavigationBarModifier.swift */; };
+		B02986D526DEC8B000681924 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02986D426DEC8B000681924 /* View+Extensions.swift */; };
 		B05AC6DD26DBE382006324BA /* code_trackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AC6DC26DBE382006324BA /* code_trackerApp.swift */; };
 		B05AC6DF26DBE382006324BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AC6DE26DBE382006324BA /* ContentView.swift */; };
 		B05AC6E126DBE383006324BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B05AC6E026DBE383006324BA /* Assets.xcassets */; };
@@ -45,6 +49,10 @@
 		8AC5E371EE42EC69BE7E7CFF /* Pods_code_tracker_code_trackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_code_tracker_code_trackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0A17924AAC639C8FD800ED /* Pods-code-tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-code-tracker.debug.xcconfig"; path = "Target Support Files/Pods-code-tracker/Pods-code-tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		AE6571CA7311982244FB5FC3 /* Pods_code_trackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_code_trackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02986CE26DEB13400681924 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
+		B02986D026DEBACC00681924 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		B02986D226DEC85200681924 /* HideNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideNavigationBarModifier.swift; sourceTree = "<group>"; };
+		B02986D426DEC8B000681924 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		B05AC6D926DBE382006324BA /* code-tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "code-tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B05AC6DC26DBE382006324BA /* code_trackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = code_trackerApp.swift; sourceTree = "<group>"; };
 		B05AC6DE26DBE382006324BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +160,10 @@
 				B05AC70926DBE42D006324BA /* OpeningScreen.swift */,
 				B05AC70B26DCCA3C006324BA /* SignUp.swift */,
 				B0FB690926DE678E0013FD84 /* HomePage.swift */,
+				B02986CE26DEB13400681924 /* Repo.swift */,
+				B02986D026DEBACC00681924 /* Network.swift */,
+				B02986D226DEC85200681924 /* HideNavigationBarModifier.swift */,
+				B02986D426DEC8B000681924 /* View+Extensions.swift */,
 			);
 			path = "code-tracker";
 			sourceTree = "<group>";
@@ -420,10 +432,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02986D326DEC85200681924 /* HideNavigationBarModifier.swift in Sources */,
+				B02986D526DEC8B000681924 /* View+Extensions.swift in Sources */,
 				B0FB690A26DE678E0013FD84 /* HomePage.swift in Sources */,
 				B05AC6DF26DBE382006324BA /* ContentView.swift in Sources */,
 				B05AC70C26DCCA3C006324BA /* SignUp.swift in Sources */,
+				B02986CF26DEB13400681924 /* Repo.swift in Sources */,
 				B05AC70A26DBE42D006324BA /* OpeningScreen.swift in Sources */,
+				B02986D126DEBACC00681924 /* Network.swift in Sources */,
 				B05AC6DD26DBE382006324BA /* code_trackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

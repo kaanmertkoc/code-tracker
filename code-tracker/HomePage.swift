@@ -8,26 +8,35 @@
 import SwiftUI
 
 struct HomePage: View {
-    @State var isActive = false
+    @State private var isActive = false
+    @EnvironmentObject var network: Network
+    
+    
     var body: some View {
         ZStack {
-            NavigationLink(destination: ContentView(), isActive: $isActive) {
-                
-            }.navigationBarBackButtonHidden(true)
+            
             Color.black
             VStack {
                 Header()
                     .padding(.init(top: 30, leading: 0, bottom: 0, trailing: 0))
+                List(network.repos, id: \.id) { repo in
+                    Text(repo.full_name)
+                }
                 Spacer()
+            }.onAppear() {
+                network.getRepos()
+                
             }
         }.ignoresSafeArea()
+        .hideNavigationBar()
+        
     }
 }
 
 struct Header : View {
     
     @State private var currentMonth = Date()
-
+    
     func getCurrentMonthTitle() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMM yyyy")
@@ -61,7 +70,7 @@ struct NavButtons: View {
     let dateFormatter = DateFormatter()
     
     var body: some View {
-        Button() {
+        Button(action: {
             if(image == "angle-left-solid 1") {
                 
                 currentMonth = Calendar.current.date(byAdding: .month, value: -1, to: currentMonth)!
@@ -73,7 +82,7 @@ struct NavButtons: View {
                 
                 currentMonth = (currMonthString == compareMonthString ? currentMonth : Calendar.current.date(byAdding: .month, value: 1, to: currentMonth))!
             }
-        } label: {
+        }, label: {
             ZStack {
                 
                 Image(image)
@@ -84,7 +93,7 @@ struct NavButtons: View {
                     .frame(width: 30, height: 30)
             }
             
-        }
+        })
         
         
         
@@ -95,6 +104,7 @@ struct NavButtons: View {
 struct HomePage_previews: PreviewProvider {
     static var previews: some View {
         HomePage()
+            .environmentObject(Network())
     }
 }
 
