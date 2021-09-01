@@ -11,6 +11,13 @@ struct HomePage: View {
     @State private var isActive = false
     @EnvironmentObject var network: Network
     
+    func loadCommits() {
+        
+        for repo in network.repos {
+            network.getCommits(full_name: repo.full_name)
+        }
+    }
+    
     
     var body: some View {
         ZStack {
@@ -19,15 +26,21 @@ struct HomePage: View {
             VStack {
                 Header()
                     .padding(.init(top: 30, leading: 0, bottom: 0, trailing: 0))
-                List(network.repos, id: \.id) { repo in
-                    Text(repo.full_name)
+                if network.repos.capacity > 0 {
+                    List(network.repos, id: \.id) { repo in
+                        Text(repo.full_name + repo.language)
+                    }.onAppear() {
+                        loadCommits()
+
+                    }
                 }
                 Spacer()
             }.onAppear() {
                 network.getRepos()
                 
             }
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
         .hideNavigationBar()
         
     }

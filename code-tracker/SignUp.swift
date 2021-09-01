@@ -29,15 +29,13 @@ struct SignUp: View {
                     .font(.system(size: 30, weight: .medium))
                     .padding(.init(top: 50, leading: 0, bottom: 0, trailing: 0))
                 NavigationLink(
-                    destination: HomePage().environmentObject(Network())
-                    ,
+                    destination: HomePage(),
                     isActive: $isActive) {}
-                    .navigationTitle("")
-                    .navigationBarBackButtonHidden(true)
+                    
                 
                 Button {
                     
-                    provider.scopes = ["user:email"]
+                    provider.scopes = ["user:email", "repo"]
                     provider.getCredentialWith(nil) { credential, error in
                         if error != nil {
                             // Handle error.

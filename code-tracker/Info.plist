@@ -38,6 +38,8 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>https://github.com</key>
+			<string></string>
 			<key>http://localhost:5000</key>
 			<string></string>
 		</dict>

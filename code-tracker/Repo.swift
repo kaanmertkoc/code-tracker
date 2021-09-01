@@ -10,4 +10,5 @@ import Foundation
 struct Repo: Codable {
     var id: Int
     var full_name: String
+    var language: String
 }
