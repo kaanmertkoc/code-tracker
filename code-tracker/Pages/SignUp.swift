@@ -29,7 +29,7 @@ struct SignUp: View {
                     .font(.system(size: 30, weight: .medium))
                     .padding(.init(top: 50, leading: 0, bottom: 0, trailing: 0))
                 NavigationLink(
-                    destination: HomePage(),
+                    destination: Home(),
                     isActive: $isActive) {}
                     
                 

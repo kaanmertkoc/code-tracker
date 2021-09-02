@@ -21,18 +21,23 @@ struct HomePage: View {
     
     var body: some View {
         ZStack {
-            
             Color.black
             VStack {
                 Header()
                     .padding(.init(top: 30, leading: 0, bottom: 0, trailing: 0))
+                
                 if network.repos.capacity > 0 {
-                    List(network.repos, id: \.id) { repo in
-                        Text(repo.full_name + repo.language)
-                    }.onAppear() {
-                        loadCommits()
-
-                    }
+                    ScrollView(.vertical, showsIndicators: false, content: {
+                        ForEach(network.repos, id: \.id) { repo in
+                            if repo.language != "none" {
+                                HomePageCard(repoName: repo.full_name, commits: repo.commits, language: repo.language)
+                            }
+                        }
+                    }).padding()
+                                            
+                }
+                else {
+                    ProgressView("Loading")
                 }
                 Spacer()
             }.onAppear() {

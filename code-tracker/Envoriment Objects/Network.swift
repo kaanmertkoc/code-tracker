@@ -82,8 +82,15 @@ class Network: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         let decodedCommits = try JSONDecoder().decode([[Int]].self, from: data)
-                        //self.commits.append(decodedCommits)
                         print(decodedCommits)
+                        
+                        for i in 0..<self.repos.capacity {
+                            if self.repos[i].full_name == full_name {
+                                let newRepo = Repo(id: self.repos[i].id, full_name: self.repos[i].full_name, language: self.repos[i].language, commits: decodedCommits)
+                                self.repos[i] = newRepo
+                            }
+                        }
+                        
                     } catch let error {
                         print("Error decoding: ", error)
                     }

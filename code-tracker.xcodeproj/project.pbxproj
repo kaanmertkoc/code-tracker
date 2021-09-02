@@ -24,6 +24,9 @@
 		B05AC70C26DCCA3C006324BA /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AC70B26DCCA3C006324BA /* SignUp.swift */; };
 		B05AC70E26DCD103006324BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B05AC70D26DCD103006324BA /* GoogleService-Info.plist */; };
 		B072414B26DFE11E002F448D /* HomePageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B072414A26DFE11E002F448D /* HomePageCard.swift */; };
+		B0CE752926E0FC51002EE748 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE752826E0FC51002EE748 /* Home.swift */; };
+		B0CE752B26E0FD25002EE748 /* StatsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE752A26E0FD25002EE748 /* StatsPage.swift */; };
+		B0CE753226E1012B002EE748 /* WeeklyCommit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE753126E1012B002EE748 /* WeeklyCommit.swift */; };
 		B0FB690A26DE678E0013FD84 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB690926DE678E0013FD84 /* HomePage.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +73,9 @@
 		B05AC70B26DCCA3C006324BA /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		B05AC70D26DCD103006324BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B072414A26DFE11E002F448D /* HomePageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCard.swift; sourceTree = "<group>"; };
+		B0CE752826E0FC51002EE748 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		B0CE752A26E0FD25002EE748 /* StatsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPage.swift; sourceTree = "<group>"; };
+		B0CE753126E1012B002EE748 /* WeeklyCommit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCommit.swift; sourceTree = "<group>"; };
 		B0FB690926DE678E0013FD84 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		B82A2F556CD97DC6D4B36F50 /* Pods-code-tracker-code-trackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-code-tracker-code-trackerUITests.debug.xcconfig"; path = "Target Support Files/Pods-code-tracker-code-trackerUITests/Pods-code-tracker-code-trackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D1A9E5BE1A60EDF9CED1B2C4 /* Pods-code-tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-code-tracker.release.xcconfig"; path = "Target Support Files/Pods-code-tracker/Pods-code-tracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,20 +159,16 @@
 		B05AC6DB26DBE382006324BA /* code-tracker */ = {
 			isa = PBXGroup;
 			children = (
+				B0CE753026E0FD7B002EE748 /* Classes */,
+				B0CE752F26E0FD6F002EE748 /* Extentions */,
+				B0CE752E26E0FD5F002EE748 /* Envoriment Objects */,
+				B0CE752D26E0FD4C002EE748 /* Components */,
+				B0CE752C26E0FD38002EE748 /* Pages */,
 				B05AC70D26DCD103006324BA /* GoogleService-Info.plist */,
 				B05AC6DC26DBE382006324BA /* code_trackerApp.swift */,
-				B05AC6DE26DBE382006324BA /* ContentView.swift */,
 				B05AC6E026DBE383006324BA /* Assets.xcassets */,
 				B05AC6E526DBE383006324BA /* Info.plist */,
 				B05AC6E226DBE383006324BA /* Preview Content */,
-				B05AC70926DBE42D006324BA /* OpeningScreen.swift */,
-				B05AC70B26DCCA3C006324BA /* SignUp.swift */,
-				B0FB690926DE678E0013FD84 /* HomePage.swift */,
-				B02986CE26DEB13400681924 /* Repo.swift */,
-				B02986D026DEBACC00681924 /* Network.swift */,
-				B02986D226DEC85200681924 /* HideNavigationBarModifier.swift */,
-				B02986D426DEC8B000681924 /* View+Extensions.swift */,
-				B072414A26DFE11E002F448D /* HomePageCard.swift */,
 			);
 			path = "code-tracker";
 			sourceTree = "<group>";
@@ -195,6 +197,53 @@
 				B05AC6FB26DBE384006324BA /* Info.plist */,
 			);
 			path = "code-trackerUITests";
+			sourceTree = "<group>";
+		};
+		B0CE752C26E0FD38002EE748 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				B05AC70926DBE42D006324BA /* OpeningScreen.swift */,
+				B05AC6DE26DBE382006324BA /* ContentView.swift */,
+				B0CE752A26E0FD25002EE748 /* StatsPage.swift */,
+				B0CE752826E0FC51002EE748 /* Home.swift */,
+				B05AC70B26DCCA3C006324BA /* SignUp.swift */,
+				B0FB690926DE678E0013FD84 /* HomePage.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		B0CE752D26E0FD4C002EE748 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B072414A26DFE11E002F448D /* HomePageCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B0CE752E26E0FD5F002EE748 /* Envoriment Objects */ = {
+			isa = PBXGroup;
+			children = (
+				B02986D026DEBACC00681924 /* Network.swift */,
+			);
+			path = "Envoriment Objects";
+			sourceTree = "<group>";
+		};
+		B0CE752F26E0FD6F002EE748 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				B02986D226DEC85200681924 /* HideNavigationBarModifier.swift */,
+				B02986D426DEC8B000681924 /* View+Extensions.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		B0CE753026E0FD7B002EE748 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B02986CE26DEB13400681924 /* Repo.swift */,
+				B0CE753126E1012B002EE748 /* WeeklyCommit.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,8 +487,11 @@
 				B02986D326DEC85200681924 /* HideNavigationBarModifier.swift in Sources */,
 				B02986D526DEC8B000681924 /* View+Extensions.swift in Sources */,
 				B0FB690A26DE678E0013FD84 /* HomePage.swift in Sources */,
+				B0CE752926E0FC51002EE748 /* Home.swift in Sources */,
 				B05AC6DF26DBE382006324BA /* ContentView.swift in Sources */,
 				B05AC70C26DCCA3C006324BA /* SignUp.swift in Sources */,
+				B0CE752B26E0FD25002EE748 /* StatsPage.swift in Sources */,
+				B0CE753226E1012B002EE748 /* WeeklyCommit.swift in Sources */,
 				B072414B26DFE11E002F448D /* HomePageCard.swift in Sources */,
 				B02986CF26DEB13400681924 /* Repo.swift in Sources */,
 				B05AC70A26DBE42D006324BA /* OpeningScreen.swift in Sources */,
