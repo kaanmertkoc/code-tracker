@@ -9,15 +9,7 @@ import SwiftUI
 
 struct HomePage: View {
     @State private var isActive = false
-    @EnvironmentObject var network: Network
-    
-    func loadCommits() {
-        
-        for repo in network.repos {
-            network.getCommits(full_name: repo.full_name)
-        }
-    }
-    
+    var repos : [Repo]
     
     var body: some View {
         ZStack {
@@ -26,9 +18,9 @@ struct HomePage: View {
                 Header()
                     .padding(.init(top: 30, leading: 0, bottom: 0, trailing: 0))
                 
-                if network.repos.capacity > 0 {
+                if repos.capacity > 0 {
                     ScrollView(.vertical, showsIndicators: false, content: {
-                        ForEach(network.repos, id: \.id) { repo in
+                        ForEach(repos, id: \.id) { repo in
                             if repo.language != "none" {
                                 HomePageCard(repoName: repo.full_name, commits: repo.commits, language: repo.language)
                             }
@@ -40,9 +32,6 @@ struct HomePage: View {
                     ProgressView("Loading")
                 }
                 Spacer()
-            }.onAppear() {
-                network.getRepos()
-                
             }
         }
         .ignoresSafeArea()
@@ -115,14 +104,6 @@ struct NavButtons: View {
         
         
         
-        
-    }
-}
-
-struct HomePage_previews: PreviewProvider {
-    static var previews: some View {
-        HomePage()
-            .environmentObject(Network())
     }
 }
 

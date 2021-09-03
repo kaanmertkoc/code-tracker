@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct StatsPage: View {
-    @EnvironmentObject var network: Network
+    let weeklyCommits: [WeeklyCommit]
+    
     var body: some View {
         ZStack {
-            
+            Color.black
+                .ignoresSafeArea()
+            VStack {
+                DaysCard(weeklyCommits: weeklyCommits)
+            }
         }.hideNavigationBar()
-    }
-}
-
-struct StatsPage_Previews: PreviewProvider {
-    static var previews: some View {
-        StatsPage()
-            .environmentObject(Network())
     }
 }

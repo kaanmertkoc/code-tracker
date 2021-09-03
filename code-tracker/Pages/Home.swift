@@ -9,20 +9,30 @@ import SwiftUI
 
 struct Home: View {
     @EnvironmentObject var network: Network
-
+    
     
     var body: some View {
         TabView {
-            HomePage()
-                .tabItem{
-                    Label("Home", systemImage: "house.fill")
-                }.environmentObject(network)
-            StatsPage()
-                .tabItem {
-                    Label("Stats", systemImage: "chart.bar.xaxis")
-                }
-                .environmentObject(network)
+            if network.repos.capacity > 0 {
+                HomePage(repos: network.repos)
+                    .tabItem{
+                        Label("Home", systemImage: "house.fill")
+                    }
+                StatsPage(weeklyCommits: network.weeklyCommits)
+                    .tabItem {
+                        Label("Stats", systemImage: "chart.bar.xaxis")
+                    }
+                
+            }
+            else {
+                ProgressView("Loading")
+            }
+            
+            
         }.foregroundColor(Color.black)
+        .onAppear() {
+            network.getRepos()
+        }
     }
 }
 

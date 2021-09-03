@@ -10,6 +10,7 @@
 		001509F5EB4772270A89AE77 /* Pods_code_tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC26ADDF4D54CF8C328EAC6 /* Pods_code_tracker.framework */; };
 		6DEC6E3086EE0D986CA16B03 /* Pods_code_tracker_code_trackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC5E371EE42EC69BE7E7CFF /* Pods_code_tracker_code_trackerUITests.framework */; };
 		90D6BD8D735F7CBD73F41390 /* Pods_code_trackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE6571CA7311982244FB5FC3 /* Pods_code_trackerTests.framework */; };
+		B018CF5B26E183660019BCE5 /* DaysCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018CF5A26E183660019BCE5 /* DaysCard.swift */; };
 		B02986CF26DEB13400681924 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02986CE26DEB13400681924 /* Repo.swift */; };
 		B02986D126DEBACC00681924 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02986D026DEBACC00681924 /* Network.swift */; };
 		B02986D326DEC85200681924 /* HideNavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02986D226DEC85200681924 /* HideNavigationBarModifier.swift */; };
@@ -53,6 +54,7 @@
 		8AC5E371EE42EC69BE7E7CFF /* Pods_code_tracker_code_trackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_code_tracker_code_trackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0A17924AAC639C8FD800ED /* Pods-code-tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-code-tracker.debug.xcconfig"; path = "Target Support Files/Pods-code-tracker/Pods-code-tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		AE6571CA7311982244FB5FC3 /* Pods_code_trackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_code_trackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B018CF5A26E183660019BCE5 /* DaysCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCard.swift; sourceTree = "<group>"; };
 		B02986CE26DEB13400681924 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		B02986D026DEBACC00681924 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		B02986D226DEC85200681924 /* HideNavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideNavigationBarModifier.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				B072414A26DFE11E002F448D /* HomePageCard.swift */,
+				B018CF5A26E183660019BCE5 /* DaysCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 			files = (
 				B02986D326DEC85200681924 /* HideNavigationBarModifier.swift in Sources */,
 				B02986D526DEC8B000681924 /* View+Extensions.swift in Sources */,
+				B018CF5B26E183660019BCE5 /* DaysCard.swift in Sources */,
 				B0FB690A26DE678E0013FD84 /* HomePage.swift in Sources */,
 				B0CE752926E0FC51002EE748 /* Home.swift in Sources */,
 				B05AC6DF26DBE382006324BA /* ContentView.swift in Sources */,

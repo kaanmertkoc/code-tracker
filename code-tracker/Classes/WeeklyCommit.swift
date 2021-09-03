@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WeeklyCommit: Codable {
+struct WeeklyCommit: Codable {
     var total: Int
     var week: Int
     var days: [Int]

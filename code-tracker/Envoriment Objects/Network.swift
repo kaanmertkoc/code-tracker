@@ -12,6 +12,7 @@ import SwiftUI
 class Network: ObservableObject {
     @Published var repos: [Repo] = []
     @Published var commits: [[Int]] = [[]]
+    @Published var weeklyCommits: [WeeklyCommit] = []
     
     
     func getRepos() {
@@ -19,7 +20,6 @@ class Network: ObservableObject {
             fatalError("missing url")
         }
         let token = UserDefaults.standard.string(forKey: "access_token")
-        print(token!)
         let json: [String: Any] = ["access_token": "\(token!)"]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         var urlRequest = URLRequest(url: url)
@@ -44,6 +44,10 @@ class Network: ObservableObject {
                     do {
                         let decodedRepos = try JSONDecoder().decode([Repo].self, from: data)
                         self.repos = decodedRepos
+                        for repo in self.repos {
+                            print(repo.full_name)
+                            self.getWeeklyCommits(repoName: repo.full_name)
+                        }
                     } catch let error {
                         print("Error decoding: ", error)
                     }
@@ -52,21 +56,19 @@ class Network: ObservableObject {
         }
         dataTask.resume()
     }
-    
-    func getCommits(full_name: String) {
-        guard let url = URL(string: "http://localhost:5000/api/commits/stats") else {
+    func getWeeklyCommits(repoName: String) {
+        guard let url = URL(string: "http://localhost:5000/api/commits/dayly") else {
             fatalError("missing url")
         }
         let token = UserDefaults.standard.string(forKey: "access_token")
         print(token!)
-        let json: [String: Any] = ["access_token": "\(token!)", "repoName": "\(full_name)"]
+        let json: [String: Any] = ["access_token": "\(token!)", "repoName": "\(repoName)"]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = jsonData
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.setValue( "Bearer \(token!)", forHTTPHeaderField: "Authorization")
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             
@@ -81,15 +83,9 @@ class Network: ObservableObject {
                 guard let data = data else {return}
                 DispatchQueue.main.async {
                     do {
-                        let decodedCommits = try JSONDecoder().decode([[Int]].self, from: data)
-                        print(decodedCommits)
-                        
-                        for i in 0..<self.repos.capacity {
-                            if self.repos[i].full_name == full_name {
-                                let newRepo = Repo(id: self.repos[i].id, full_name: self.repos[i].full_name, language: self.repos[i].language, commits: decodedCommits)
-                                self.repos[i] = newRepo
-                            }
-                        }
+                        let decodedWeeklyCommits = try JSONDecoder().decode(WeeklyCommit.self, from: data)
+                        print(decodedWeeklyCommits)
+                        self.weeklyCommits.append(decodedWeeklyCommits)
                         
                     } catch let error {
                         print("Error decoding: ", error)

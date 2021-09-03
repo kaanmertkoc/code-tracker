@@ -52,7 +52,7 @@ struct HomePageCard: View {
                     .padding()
                     Spacer()
                     VStack {
-                        Text("Last 3 weeks")
+                        Text("Last 3 commits")
                             .font(.system(size: 15, weight: .medium))
                             .foregroundColor(Color.white)
                         ForEach(getCommits(), id: \.self) { commit in
