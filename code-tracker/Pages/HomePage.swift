@@ -22,8 +22,10 @@ struct HomePage: View {
                     ScrollView(.vertical, showsIndicators: false, content: {
                         ForEach(repos, id: \.id) { repo in
                             if repo.language != "none" {
-                                HomePageCard(repoName: repo.full_name, commits: repo.commitsPerWeek, language: repo.language)
-                                    .padding()  
+                                NavigationLink(destination: DetailPage(repo: repo)) {
+                                    HomePageCard(repoName: repo.full_name, commits: repo.commitsPerWeek, language: repo.language)
+                                        .padding()
+                                }                                    
                             }
                         }
                     }).padding()
