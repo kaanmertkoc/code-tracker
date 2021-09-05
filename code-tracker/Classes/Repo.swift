@@ -11,5 +11,5 @@ struct Repo: Codable {
     var id: Int
     var full_name: String
     var language: String
-    var commits: [[Int]]
+    var commitsPerWeek: [Int]
 }

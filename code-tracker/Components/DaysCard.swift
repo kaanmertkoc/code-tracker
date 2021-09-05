@@ -16,12 +16,12 @@ struct DaysCard: View {
         for commit in weeklyCommits {
             for i in 0..<commit.days.capacity - 1 {
                 print(i)
-                commitsPerDay[i] += commit.days[i]
+                commitsPerDay[i] = commitsPerDay[i] + commit.days[i]
             }
         }
         return commitsPerDay
     }
-        
+    
     var body: some View {
         ZStack {
             Color.black
@@ -31,17 +31,18 @@ struct DaysCard: View {
                     .font(.system(size: 15, weight: .bold))
                     .foregroundColor(Color.white)
                     .padding()
-                HStack {
+                Spacer()
+                HStack(spacing: 15) {
                     ForEach(getSumOfCommitsPerDay(), id: \.self) { commitDay in
                         DaysCircle(number: commitDay)
                     }
                 }
                 Spacer()
-            }.frame(width: 330, height: 150)
+            }.frame(width: screenWidth, height: 300)
             
             RoundedRectangle(cornerRadius: 20.0)
                 .stroke(Color.gray)
-                .frame(width: 330, height: 150)
+                .frame(width: screenWidth, height: 300)
                 .foregroundColor(Color.black.opacity(0))
         }
     }
@@ -55,21 +56,28 @@ struct DaysCircle: View {
     let nineCommitColor = Color(red: 57/255, green: 211/255, blue: 83/255)
     
     var body: some View{
-        ZStack {
-            
-            ZStack {
-                Circle()
-                    .strokeBorder(Color.gray)
-                Circle()
-                    .fill((number == 1 ? oneCommitColor : number > 1 ? threeCommitColor : number > 3 ? sixCommitColor : number > 6 ? nineCommitColor : Color.black.opacity(0)))
-                
-            }.frame(width: 30, height: 30)
-            
-            Text(String(describing: number))
-                .font(.system(size: 15, weight: .bold))
+        VStack {
+            Text("Seb 3")
                 .foregroundColor(Color.white)
-        
-        }.frame(width: 30, height: 30)
+                .font(.system(size: 15, weight: .light))
+            ZStack {
+                ZStack {
+                    Circle()
+                        .strokeBorder(Color.gray)
+                    Circle()
+                        .fill((number == 1 ? oneCommitColor : number > 1 ? threeCommitColor : number > 3 ? sixCommitColor : number > 6 ? nineCommitColor : Color.black.opacity(0)))
+                    
+                }.frame(width: 40, height: 40)
+                
+                Text(String(describing: number))
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(Color.white)
+                
+            }.frame(width: 40, height: 40)
+            Text("M")
+                .foregroundColor(Color.white)
+                .font(.system(size: 15, weight: .light))
+        }
     }
     
 }
@@ -77,7 +85,9 @@ struct DaysCircle: View {
 struct DaysCard_Previews: PreviewProvider {
     
     static var previews: some View {
-        DaysCard(weeklyCommits: [WeeklyCommit(total: 4, week: 1, days: [1, 2, 3, 4, 0, 0]), WeeklyCommit(total: 7, week: 2, days: [3, 2, 2, 2, 1] )])
+        DaysCard(weeklyCommits: [WeeklyCommit(total: 4, week: 1, days:
+                                                [1, 2, 3, 4, 0, 0, 1]), WeeklyCommit(total: 7, week: 2, days:
+                                                                                        [3, 2, 2, 2, 1, 1, 2] )])
         
     }
 }

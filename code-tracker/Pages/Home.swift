@@ -18,10 +18,12 @@ struct Home: View {
                     .tabItem{
                         Label("Home", systemImage: "house.fill")
                     }
+                /*
                 StatsPage(weeklyCommits: network.weeklyCommits)
                     .tabItem {
                         Label("Stats", systemImage: "chart.bar.xaxis")
                     }
+                 */
                 
             }
             else {

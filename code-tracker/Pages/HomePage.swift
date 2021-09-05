@@ -22,10 +22,12 @@ struct HomePage: View {
                     ScrollView(.vertical, showsIndicators: false, content: {
                         ForEach(repos, id: \.id) { repo in
                             if repo.language != "none" {
-                                HomePageCard(repoName: repo.full_name, commits: repo.commits, language: repo.language)
+                                HomePageCard(repoName: repo.full_name, commits: repo.commitsPerWeek, language: repo.language)
+                                    .padding()  
                             }
                         }
                     }).padding()
+                    .frame(width: screenWidth, height: screenHeight - 200)
                                             
                 }
                 else {
@@ -102,8 +104,12 @@ struct NavButtons: View {
             
         })
         
-        
-        
+    }
+}
+
+struct HomePage_Previews: PreviewProvider {
+    static var previews: some View {
+        HomePage(repos: [Repo(id: 0, full_name: "kaan", language: "Python", commitsPerWeek: [0, 1, 1, 2]), Repo(id: 1, full_name: "cengo", language: "JavaScript", commitsPerWeek: [0, 1, 2, 42])])
     }
 }
 
