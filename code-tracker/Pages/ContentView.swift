@@ -17,7 +17,12 @@ struct ContentView: View {
                 
                 Color.black
                     .ignoresSafeArea()
-                OpeningScreen()
+                if UserDefaults.standard.string(forKey: "access_token") == nil {
+                    OpeningScreen()
+                }
+                else {
+                    Home()
+                }
             }
         }.navigationBarBackButtonHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())

@@ -6,10 +6,39 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import Firebase
 
 struct Home: View {
     @EnvironmentObject var network: Network
+    var provider = OAuthProvider(providerID: "github.com")
     
+    func refreshToken() {
+        provider.scopes = ["user:email", "repo"]
+        provider.getCredentialWith(nil) { credential, error in
+            if error != nil {
+                // Handle error.
+            }
+            if credential != nil {
+                Auth.auth().currentUser?.reauthenticate(with: credential!, completion: { authResult, error in
+                    
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    guard let oauthCredential = authResult!.credential as? OAuthCredential else {return}
+                    
+                    if oauthCredential.accessToken != nil {
+                        print(oauthCredential.accessToken!)
+                        UserDefaults.standard.setValue(oauthCredential.accessToken!, forKey: "access_token")
+                    }
+                    else {
+                        print("error getting token")
+                    }
+                })
+            }
+        }
+    }
     
     var body: some View {
         TabView {
@@ -18,13 +47,12 @@ struct Home: View {
                     .tabItem{
                         Label("Home", systemImage: "house.fill")
                     }
-                /*
-                StatsPage(weeklyCommits: network.weeklyCommits)
+                
+                StatsPage(repos: network.repos)
                     .tabItem {
                         Label("Stats", systemImage: "chart.bar.xaxis")
                     }
-                 */
-                
+                                 
             }
             else {
                 ProgressView("Loading")
@@ -33,6 +61,7 @@ struct Home: View {
             
         }.foregroundColor(Color.black)
         .onAppear() {
+            refreshToken()
             network.getRepos()
         }
     }

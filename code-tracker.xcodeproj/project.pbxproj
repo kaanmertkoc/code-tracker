@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		B05AC70A26DBE42D006324BA /* OpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AC70926DBE42D006324BA /* OpeningScreen.swift */; };
 		B05AC70C26DCCA3C006324BA /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AC70B26DCCA3C006324BA /* SignUp.swift */; };
 		B05AC70E26DCD103006324BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B05AC70D26DCD103006324BA /* GoogleService-Info.plist */; };
+		B05C481C26E677FF00C6C79F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = B05C481B26E677FF00C6C79F /* SwiftUICharts */; };
 		B064AA3626E53C12006E8378 /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064AA3526E53C12006E8378 /* DetailPage.swift */; };
 		B072414B26DFE11E002F448D /* HomePageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B072414A26DFE11E002F448D /* HomePageCard.swift */; };
 		B0CE752926E0FC51002EE748 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE752826E0FC51002EE748 /* Home.swift */; };
@@ -93,6 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				001509F5EB4772270A89AE77 /* Pods_code_tracker.framework in Frameworks */,
+				B05C481C26E677FF00C6C79F /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +272,9 @@
 			dependencies = (
 			);
 			name = "code-tracker";
+			packageProductDependencies = (
+				B05C481B26E677FF00C6C79F /* SwiftUICharts */,
+			);
 			productName = "code-tracker";
 			productReference = B05AC6D926DBE382006324BA /* code-tracker.app */;
 			productType = "com.apple.product-type.application";
@@ -344,6 +349,9 @@
 				Base,
 			);
 			mainGroup = B05AC6D026DBE382006324BA;
+			packageReferences = (
+				B05C481A26E677FF00C6C79F /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = B05AC6DA26DBE382006324BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -826,6 +834,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B05C481A26E677FF00C6C79F /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.5.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B05C481B26E677FF00C6C79F /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B05C481A26E677FF00C6C79F /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B05AC6D126DBE382006324BA /* Project object */;
 }

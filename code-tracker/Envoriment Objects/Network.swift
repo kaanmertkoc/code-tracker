@@ -8,12 +8,18 @@
 import SwiftUI
 
 
+struct Languages: Codable {
+    var language: String
+    var value: Int
+    
+}
+
 
 class Network: ObservableObject {
     @Published var repos: [Repo] = []
     @Published var commits: [[Int]] = [[]]
     @Published var weeklyCommits: WeeklyCommit = WeeklyCommit(total: 0, week: 0, days: [])
-    
+    @Published var languages : [Languages] = []
     
     
     func getRepos() {
@@ -161,6 +167,54 @@ class Network: ObservableObject {
                     do {
                         let decodedCommitDetails = try JSONDecoder().decode([[Int]].self, from: data)
                         self.commits = decodedCommitDetails
+                    } catch let error {
+                        print("Error decoding: ", error, repoName)
+                    }
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func getLanguagesPerRepo(repoName: String) {
+        guard let url = URL(string: "http://localhost:5000/api/repos/language") else {
+            fatalError("missing url")
+        }
+        let token = UserDefaults.standard.string(forKey: "access_token")
+        print(token!)
+        let json: [String: Any] = ["access_token": "\(token!)", "repoName": "\(repoName)"]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = jsonData
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            
+            if let error = error {
+                print("Request error: ", error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {return }
+            
+            if response.statusCode == 200 {
+                guard let data = data else {return}
+                DispatchQueue.main.async {
+                    do {
+                        let decodedLanguages = try JSONDecoder().decode([Languages].self, from: data)
+                        for language in decodedLanguages {
+                            
+                            let result = self.languages.indices.filter {self.languages[$0].language == language.language}                            
+                            if result.isEmpty {
+                                self.languages.append(language)
+                            }
+                            else {
+                                self.languages[result[0]].value += language.value
+                            }
+                        }
+                        
                     } catch let error {
                         print("Error decoding: ", error, repoName)
                     }
