@@ -4,7 +4,6 @@
 //
 //  Created by Kaan Koç on 2.09.2021.
 //
-
 import SwiftUI
 import FirebaseAuth
 import Firebase
@@ -12,6 +11,7 @@ import Firebase
 struct Home: View {
     @EnvironmentObject var network: Network
     var provider = OAuthProvider(providerID: "github.com")
+    @State var shouldRefresh = true
     
     func refreshToken() {
         provider.scopes = ["user:email", "repo"]
@@ -48,7 +48,7 @@ struct Home: View {
                         Label("Home", systemImage: "house.fill")
                     }
                 
-                StatsPage(repos: network.repos)
+                StatsPage(repos: network.repos, languages: network.languages)
                     .tabItem {
                         Label("Stats", systemImage: "chart.bar.xaxis")
                     }
@@ -61,7 +61,10 @@ struct Home: View {
             
         }.foregroundColor(Color.black)
         .onAppear() {
-            refreshToken()
+            if shouldRefresh {
+                refreshToken()
+                shouldRefresh = false
+            }
             network.getRepos()
         }
     }

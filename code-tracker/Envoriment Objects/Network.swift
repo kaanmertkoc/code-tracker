@@ -20,6 +20,7 @@ class Network: ObservableObject {
     @Published var commits: [[Int]] = [[]]
     @Published var weeklyCommits: WeeklyCommit = WeeklyCommit(total: 0, week: 0, days: [])
     @Published var languages : [Languages] = []
+    @Published var totalLines: Int = 0
     
     
     func getRepos() {
@@ -51,6 +52,9 @@ class Network: ObservableObject {
                     do {
                         let decodedRepos = try JSONDecoder().decode([Repo].self, from: data)
                         self.repos = decodedRepos
+                        for repo in self.repos {
+                            self.getLanguagesPerRepo(repoName: repo.full_name)
+                        }
 
                     } catch let error {
                         print("Error decoding: ", error)
@@ -206,7 +210,8 @@ class Network: ObservableObject {
                         let decodedLanguages = try JSONDecoder().decode([Languages].self, from: data)
                         for language in decodedLanguages {
                             
-                            let result = self.languages.indices.filter {self.languages[$0].language == language.language}                            
+                            let result = self.languages.indices.filter {self.languages[$0].language == language.language}
+                            
                             if result.isEmpty {
                                 self.languages.append(language)
                             }
@@ -217,6 +222,46 @@ class Network: ObservableObject {
                         
                     } catch let error {
                         print("Error decoding: ", error, repoName)
+                    }
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func getTotalLines(repos: [Repo]) {
+        guard let url = URL(string: "http://localhost:5000/api/total") else {
+            fatalError("missing url")
+        }
+        let token = UserDefaults.standard.string(forKey: "access_token")
+        print(token!)
+        let reposString = repos.map {$0.full_name}
+        let json: [String: Any] = ["access_token": "\(token!)", "repos": reposString]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.httpBody = jsonData
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            
+            if let error = error {
+                print("Request error: ", error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {return }
+            
+            if response.statusCode == 200 {
+                guard let data = data else {return}
+                DispatchQueue.main.async {
+                    do {
+                        let decodedTotalLines = try JSONDecoder().decode(Int.self, from: data)
+                        self.totalLines = decodedTotalLines
+                        
+                    } catch let error {
+                        print("Error decoding: ", error)
                     }
                 }
             }

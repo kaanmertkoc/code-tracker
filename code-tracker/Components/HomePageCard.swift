@@ -31,6 +31,14 @@ struct HomePageCard: View {
     var body: some View {
         ZStack {
             Color.black
+            
+            Rectangle()
+                .fill(Color.black)
+                .cornerRadius(10)
+                .shadow(color: Color.gray, radius: 8)
+                .frame(width: screenWidth - 10, height: 130)
+
+            
             VStack(alignment: .center) {
                 Text(repoName)
                     .font(.system(size: 15, weight: .light))
@@ -63,10 +71,7 @@ struct HomePageCard: View {
                 }
                 
             }
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray)
-                .frame(width: screenWidth, height: 130)
-                .foregroundColor(Color.black.opacity(0))
+            
             
         }.frame(width: screenWidth, height: 130)
     }
