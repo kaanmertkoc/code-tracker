@@ -52,6 +52,12 @@ struct Home: View {
                     .tabItem {
                         Label("Stats", systemImage: "chart.bar.xaxis")
                     }
+                
+                CalendarPage(repos: network.repos) .tabItem {
+                    Label("Calendar", systemImage: "calendar.circle.fill")
+                }
+                
+                
                                  
             }
             else {

@@ -18,7 +18,7 @@ struct Languages: Codable {
 class Network: ObservableObject {
     @Published var repos: [Repo] = []
     @Published var commits: [[Int]] = [[]]
-    @Published var weeklyCommits: WeeklyCommit = WeeklyCommit(total: 0, week: 0, days: [])
+    @Published var weeklyCommits: [[WeeklyCommit]] = [[WeeklyCommit(total: 0, week: 0, days: [])]]
     @Published var languages : [Languages] = []
     @Published var totalLines: Int = 0
     
@@ -70,6 +70,7 @@ class Network: ObservableObject {
         }
         let token = UserDefaults.standard.string(forKey: "access_token")
         print(token!)
+        print(repoName)
         let json: [String: Any] = ["access_token": "\(token!)", "repoName": "\(repoName)"]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         var urlRequest = URLRequest(url: url)
@@ -91,9 +92,9 @@ class Network: ObservableObject {
                 guard let data = data else {return}
                 DispatchQueue.main.async {
                     do {
-                        let decodedWeeklyCommits = try JSONDecoder().decode(WeeklyCommit.self, from: data)
+                        let decodedWeeklyCommits = try JSONDecoder().decode([WeeklyCommit].self, from: data)
                         print(decodedWeeklyCommits)
-                        self.weeklyCommits = decodedWeeklyCommits
+                        self.weeklyCommits.append(decodedWeeklyCommits)
                         
                     } catch let error {
                         print("Error decoding: ", error)

@@ -1,4 +1,5 @@
 PODS:
+  - CalendarHeatmap (0.1.3)
   - Firebase/Auth (8.6.1):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.6.0)
@@ -46,10 +47,12 @@ PODS:
   - PromisesObjC (2.0.0)
 
 DEPENDENCIES:
+  - CalendarHeatmap
   - Firebase/Auth
 
 SPEC REPOS:
   trunk:
+    - CalendarHeatmap
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -61,6 +64,7 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
+  CalendarHeatmap: 91034b0eead341a8a8d29b4a460b8b3a176fa36c
   Firebase: e84d95f6d3a91f634abc384f0751c434cb3aecfa
   FirebaseAuth: 223adeeb2262b417532e89bf06a960e3a0a1e9e4
   FirebaseCore: a753c231801f04f5ccd10cc92119ad1b12a61165
@@ -71,6 +75,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: 5caec89ada6238308c3a4c24f0ad8732eda2484b
+PODFILE CHECKSUM: 259a5756bb30557404322a4af3a4ee9440a1b317
 
 COCOAPODS: 1.10.2

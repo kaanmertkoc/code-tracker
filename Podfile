@@ -7,7 +7,8 @@ target 'code-tracker' do
 
   # Pods for code-tracker
   pod 'Firebase/Auth'
-  pod 'FirebaseUI'
+  pod 'CalendarHeatmap'
+
 
   target 'code-trackerTests' do
     inherit! :search_paths
