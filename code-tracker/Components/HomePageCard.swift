@@ -67,6 +67,7 @@ struct HomePageCard: View {
                     Spacer()
                 }
                 .onAppear() {
+                    
                     commitCount = getCommitsSum()
                 }
                 

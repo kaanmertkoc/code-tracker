@@ -41,6 +41,10 @@ struct DetailPage: View {
                             .foregroundColor(Color.white)
                     }
                 }
+                else {
+                    Spacer()
+                    ProgressView("Loading")
+                }
                 Spacer()
                 
             }

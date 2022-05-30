@@ -11,25 +11,25 @@ struct HomePage: View {
     @State private var isActive = false
     var repos : [Repo]
     
+    
     var body: some View {
         ZStack {
             Color.black
             VStack {
-                Header()
-                    .padding(.init(top: 30, leading: 0, bottom: 0, trailing: 0))
+               
                 
                 if repos.capacity > 0 {
                     ScrollView(.vertical, showsIndicators: false, content: {
                         ForEach(repos, id: \.id) { repo in
-                            if repo.language != "none" {
+                           
                                 NavigationLink(destination: DetailPage(repo: repo)) {
                                     HomePageCard(repoName: repo.full_name, commits: repo.commitsPerWeek, language: repo.language)
                                         .padding()
                                 }                                    
-                            }
+                            
                         }
-                    }).padding()
-                    .frame(width: screenWidth, height: screenHeight - 200)
+                    }).padding(.init(top: 60, leading: 0, bottom: 0, trailing: 0))
+                    .frame(width: screenWidth - 100, height: screenHeight)
                                             
                 }
                 else {

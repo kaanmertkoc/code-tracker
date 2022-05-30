@@ -29,7 +29,6 @@ struct Home: View {
                     guard let oauthCredential = authResult!.credential as? OAuthCredential else {return}
                     
                     if oauthCredential.accessToken != nil {
-                        print(oauthCredential.accessToken!)
                         UserDefaults.standard.setValue(oauthCredential.accessToken!, forKey: "access_token")
                     }
                     else {
@@ -52,13 +51,15 @@ struct Home: View {
                     .tabItem {
                         Label("Stats", systemImage: "chart.bar.xaxis")
                     }
-                
-                CalendarPage(repos: network.repos) .tabItem {
-                    Label("Calendar", systemImage: "calendar.circle.fill")
-                }
-                
-                
-                                 
+                StarPage(repos: network.starredRepos)
+                    .tabItem {
+                        Label("Stars", systemImage: "star.fill")
+                    }
+                DiscoverPage(languages: network.languages)
+                    .tabItem {
+                        Label("Discover", systemImage: "safari.fill")
+                    }
+               
             }
             else {
                 ProgressView("Loading")
@@ -72,6 +73,7 @@ struct Home: View {
                 shouldRefresh = false
             }
             network.getRepos()
+            network.getStarredRepos()
         }
     }
 }
